@@ -7,7 +7,7 @@ public partial class Parametro
 {
     public int ParametroId { get; set; }
 
-    public byte[] Descripcion { get; set; } = null!;
+    public string Descripcion { get; set; } = null!;
 
     public virtual ICollection<Programa> ProgramaCategoriaNavigations { get; set; } = new List<Programa>();
 

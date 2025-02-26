@@ -27,7 +27,9 @@ public partial class PeliculasContext : DbContext
     {
         modelBuilder.Entity<Parametro>(entity =>
         {
-            entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Programa>(entity =>
