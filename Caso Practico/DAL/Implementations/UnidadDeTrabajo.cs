@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL.Interfaces;
+using Entities.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +8,37 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    public interface IDALGenerico<TEntity> where TEntity : class
+    public class UnidadDeTrabajo : IUnidadDeTrabajo
     {
-        bool Add(TEntity entity);
-        bool Update(TEntity entity);
-        bool Remove(TEntity entity);
-        TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
+        public IProgramaDAL ProgramaDAL { get; set; }
 
+        private PeliculasContext _peliculaContext;
+
+        public UnidadDeTrabajo(PeliculasContext peliculaContext,IProgramaDAL programaDAL)
+        {
+            this._peliculaContext = peliculaContext;
+            this.ProgramaDAL = programaDAL;
+
+        }
+
+
+        public bool Complete()
+        {
+            try
+            {
+                _peliculaContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public void Dispose()
+        {
+            this._peliculaContext.Dispose();
+        }
     }
 }

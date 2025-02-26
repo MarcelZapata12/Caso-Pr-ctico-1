@@ -1,4 +1,5 @@
-﻿using Entities.Entities;
+﻿using DAL.Interfaces;
+using Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
